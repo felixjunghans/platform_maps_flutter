@@ -12,6 +12,15 @@ class PlatformMapController {
     }
   }
 
+  Future<void> centerMarkerBounds() {
+    if (Platform.isAndroid) {
+      return Future.value();
+    } else if (Platform.isIOS) {
+      return appleController!.showAnnotations();
+    }
+    throw ('Platform not supported.');
+  }
+
   /// Programmatically show the Info Window for a [Marker].
   ///
   /// The `markerId` must match one of the markers on the map.
