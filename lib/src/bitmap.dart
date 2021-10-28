@@ -19,6 +19,24 @@ class BitmapDescriptor {
     return null;
   }
 
+  static BitmapDescriptor? get markerAnnotation {
+    if (Platform.isIOS) {
+      return BitmapDescriptor._(appleMaps.BitmapDescriptor.markerAnnotation);
+    } else if (Platform.isAndroid) {
+      return BitmapDescriptor._(googleMaps.BitmapDescriptor.defaultMarker);
+    }
+    return null;
+  }
+
+  static BitmapDescriptor? get pointAnnotation {
+    if (Platform.isIOS) {
+      return BitmapDescriptor._(appleMaps.BitmapDescriptor.pointAnnotation);
+    } else if (Platform.isAndroid) {
+      return BitmapDescriptor._(googleMaps.BitmapDescriptor.defaultMarker);
+    }
+    return null;
+  }
+
   /// Creates a [BitmapDescriptor] from an asset image.
   /// Asset images in flutter are stored per: https://flutter.dev/docs/development/ui/assets-and-images#declaring-resolution-aware-image-assets
   ///

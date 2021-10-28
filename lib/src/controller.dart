@@ -12,9 +12,18 @@ class PlatformMapController {
     }
   }
 
+  Future<LatLng> getCenter() async {
+    if (Platform.isAndroid) {
+      return LatLng._fromGoogleLatLng(await googleController!.getCenter());
+    } else if (Platform.isIOS) {
+      return LatLng._fromAppleLatLng(await appleController!.getCenter());
+    }
+    throw ('Platform not supported.');
+  }
+
   Future<void> centerMarkerBounds() {
     if (Platform.isAndroid) {
-      return Future.value();
+      return googleController!.centerMarkerBounds();
     } else if (Platform.isIOS) {
       return appleController!.showAnnotations();
     }

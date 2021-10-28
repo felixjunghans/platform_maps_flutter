@@ -31,6 +31,7 @@ class PlatformMap extends StatefulWidget {
     this.onCameraIdle,
     this.onTap,
     this.onLongPress,
+    this.onMarkerUpdated,
     this.enableClustering = false,
   }) : super(key: key);
 
@@ -87,6 +88,8 @@ class PlatformMap extends StatefulWidget {
   final Set<Circle> circles;
 
   final bool enableClustering;
+
+  final VoidCallback? onMarkerUpdated;
 
   /// Called when the camera starts moving.
   ///
@@ -223,6 +226,7 @@ class _PlatformMapState extends State<PlatformMap> {
         rotateGesturesEnabled: widget.rotateGesturesEnabled,
         zoomGesturesEnabled: widget.zoomGesturesEnabled,
         scrollGesturesEnabled: widget.scrollGesturesEnabled,
+        onAnnotationUpdated: widget.onMarkerUpdated,
         onMapCreated: _onMapCreated,
         onCameraMove: _onCameraMove,
         onTap: _onTap,

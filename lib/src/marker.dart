@@ -112,6 +112,7 @@ class Marker {
     this.onDragEnd,
     this.backgroundColor,
     this.image,
+    this.anchor = const Offset(0.5, 1.0),
     this.isChildItem = false,
   }) : assert((0.0 <= alpha && alpha <= 1.0));
 
@@ -158,6 +159,8 @@ class Marker {
 
   final bool isChildItem;
 
+  final Offset anchor;
+
   appleMaps.Annotation get appleMapsAnnotation => appleMaps.Annotation(
         annotationId: this.markerId.appleMapsAnnoationId,
         clusteringIdentifier: this.clusteringIdentifier,
@@ -169,6 +172,7 @@ class Marker {
             BitmapDescriptor.defaultMarker?.bitmapDescriptor,
         visible: this.visible,
         backgroundColor: this.backgroundColor,
+        anchor: this.anchor,
         onDragEnd: this.onDragEnd != null
             ? (appleMaps.LatLng latLng) =>
                 _onAppleAnnotationDragEnd(latLng, this.onDragEnd)
@@ -186,6 +190,7 @@ class Marker {
         draggable: this.draggable,
         infoWindow: this.infoWindow.googleMapsInfoWindow,
         onTap: this.onTap,
+        anchor: this.anchor,
         icon: this.icon?.bitmapDescriptor ??
             BitmapDescriptor.defaultMarker?.bitmapDescriptor,
         visible: this.visible,
