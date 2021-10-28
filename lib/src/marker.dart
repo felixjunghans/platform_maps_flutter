@@ -101,6 +101,7 @@ class Marker {
   const Marker({
     required this.markerId,
     this.alpha = 1.0,
+    this.clusteringIdentifier,
     this.consumeTapEvents = false,
     this.draggable = false,
     this.icon,
@@ -109,6 +110,9 @@ class Marker {
     this.onTap,
     this.visible = true,
     this.onDragEnd,
+    this.backgroundColor,
+    this.image,
+    this.isChildItem = false,
   }) : assert((0.0 <= alpha && alpha <= 1.0));
 
   /// Uniquely identifies a [Marker].
@@ -118,6 +122,8 @@ class Marker {
   ///
   /// 0.0 means fully transparent, 1.0 means fully opaque.
   final double alpha;
+
+  final String? clusteringIdentifier;
 
   /// True if the marker icon consumes tap events. If not, the map will perform
   /// default tap handling by centering the map on the marker and displaying its
@@ -144,10 +150,17 @@ class Marker {
   /// True if the annotation is visible.
   final bool visible;
 
+  final String? backgroundColor;
+
   final ValueChanged<LatLng>? onDragEnd;
+
+  final Uint8List? image;
+
+  final bool isChildItem;
 
   appleMaps.Annotation get appleMapsAnnotation => appleMaps.Annotation(
         annotationId: this.markerId.appleMapsAnnoationId,
+        clusteringIdentifier: this.clusteringIdentifier,
         alpha: this.alpha,
         draggable: this.draggable,
         infoWindow: this.infoWindow.appleMapsInfoWindow,
@@ -155,11 +168,16 @@ class Marker {
         icon: this.icon?.bitmapDescriptor ??
             BitmapDescriptor.defaultMarker?.bitmapDescriptor,
         visible: this.visible,
+        backgroundColor: this.backgroundColor,
         onDragEnd: this.onDragEnd != null
             ? (appleMaps.LatLng latLng) =>
                 _onAppleAnnotationDragEnd(latLng, this.onDragEnd)
             : null,
+        image: this.image != null
+            ? appleMaps.ImageDescriptor.fromBytes(this.image!)
+            : null,
         position: this.position.appleLatLng,
+        isChildAnnotation: isChildItem,
       );
 
   googleMaps.Marker get googleMapsMarker => googleMaps.Marker(

@@ -2,6 +2,7 @@ library platform_maps_flutter;
 
 import 'dart:io';
 import 'dart:typed_data';
+import 'dart:ui';
 
 import 'package:apple_maps_flutter/apple_maps_flutter.dart' as appleMaps;
 import 'package:flutter/cupertino.dart';

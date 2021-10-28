@@ -31,6 +31,7 @@ class PlatformMap extends StatefulWidget {
     this.onCameraIdle,
     this.onTap,
     this.onLongPress,
+    this.enableClustering = false,
   }) : super(key: key);
 
   /// Callback method for when the map is ready to be used.
@@ -84,6 +85,8 @@ class PlatformMap extends StatefulWidget {
 
   /// Circles to be placed on the map.
   final Set<Circle> circles;
+
+  final bool enableClustering;
 
   /// Called when the camera starts moving.
   ///
@@ -206,6 +209,7 @@ class _PlatformMapState extends State<PlatformMap> {
         compassEnabled: widget.compassEnabled,
         mapType: _getAppleMapType(),
         padding: widget.padding,
+        enableClustering: widget.enableClustering,
         annotations: Marker.toAppleMapsAnnotationSet(widget.markers),
         polylines: Polyline.toAppleMapsPolylines(widget.polylines),
         polygons: Polygon.toAppleMapsPolygonSet(widget.polygons),
