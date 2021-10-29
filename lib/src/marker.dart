@@ -205,16 +205,22 @@ class Marker {
       appleMaps.Annotation(
         annotationId: marker.markerId.appleMapsAnnoationId,
         alpha: marker.alpha,
-        anchor: Offset(0.5, 1.0),
+        anchor: marker.anchor,
+        backgroundColor: marker.backgroundColor,
         draggable: marker.draggable,
         infoWindow: marker.infoWindow.appleMapsInfoWindow,
         onTap: marker.onTap,
         icon: marker.icon?.bitmapDescriptor ??
             BitmapDescriptor.defaultMarker?.bitmapDescriptor,
         visible: marker.visible,
+        clusteringIdentifier: marker.clusteringIdentifier,
+        isChildAnnotation: marker.isChildItem,
+        image: marker.image != null
+            ? appleMaps.ImageDescriptor.fromBytes(marker.image!)
+            : null,
         onDragEnd: marker.onDragEnd != null
             ? (appleMaps.LatLng latLng) =>
-                _onAppleAnnotationDragEnd(latLng, marker.onDragEnd)
+            _onAppleAnnotationDragEnd(latLng, marker.onDragEnd)
             : null,
         position: marker.position.appleLatLng,
       );
