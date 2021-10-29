@@ -112,6 +112,7 @@ class Marker {
     this.onDragEnd,
     this.backgroundColor,
     this.image,
+    this.controlActions = 0,
     this.anchor = const Offset(0.5, 1.0),
     this.isChildItem = false,
   }) : assert((0.0 <= alpha && alpha <= 1.0));
@@ -130,6 +131,8 @@ class Marker {
   /// default tap handling by centering the map on the marker and displaying its
   /// info window.
   final bool consumeTapEvents;
+
+  final int controlActions;
 
   /// True if the marker is draggable by user touch events.
   final bool draggable;
@@ -172,6 +175,7 @@ class Marker {
             BitmapDescriptor.defaultMarker?.bitmapDescriptor,
         visible: this.visible,
         backgroundColor: this.backgroundColor,
+        controlActions: this.controlActions,
         anchor: this.anchor,
         onDragEnd: this.onDragEnd != null
             ? (appleMaps.LatLng latLng) =>
@@ -208,6 +212,7 @@ class Marker {
         anchor: marker.anchor,
         backgroundColor: marker.backgroundColor,
         draggable: marker.draggable,
+        controlActions: marker.controlActions,
         infoWindow: marker.infoWindow.appleMapsInfoWindow,
         onTap: marker.onTap,
         icon: marker.icon?.bitmapDescriptor ??
@@ -220,7 +225,7 @@ class Marker {
             : null,
         onDragEnd: marker.onDragEnd != null
             ? (appleMaps.LatLng latLng) =>
-            _onAppleAnnotationDragEnd(latLng, marker.onDragEnd)
+                _onAppleAnnotationDragEnd(latLng, marker.onDragEnd)
             : null,
         position: marker.position.appleLatLng,
       );
@@ -268,6 +273,7 @@ class Marker {
     InfoWindow? infoWindowParam,
     LatLng? positionParam,
     bool? visibleParam,
+    int? controlActions,
     VoidCallback? onTapParam,
   }) {
     return Marker(
@@ -279,6 +285,7 @@ class Marker {
       infoWindow: infoWindowParam ?? infoWindow,
       position: positionParam ?? position,
       visible: visibleParam ?? visible,
+      controlActions: controlActions ?? this.controlActions,
       onTap: onTapParam ?? onTap,
     );
   }
