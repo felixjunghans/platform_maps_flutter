@@ -12,6 +12,15 @@ class PlatformMapController {
     }
   }
 
+  Future<double?> getZoomLevel() async {
+    if (Platform.isAndroid) {
+      return this.googleController?.getZoomLevel();
+    } else if (Platform.isIOS) {
+      return this.appleController?.getZoomLevel();
+    }
+    throw ('Platform not supported.');
+  }
+
   Future<LatLng> getCenter() async {
     if (Platform.isAndroid) {
       return LatLng._fromGoogleLatLng(await googleController!.getCenter());
