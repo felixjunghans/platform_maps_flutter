@@ -189,6 +189,7 @@ class _PlatformMapState extends State<PlatformMap> {
         circles: Circle.toGoogleMapsCircleSet(widget.circles),
         gestureRecognizers: widget.gestureRecognizers,
         onCameraIdle: widget.onCameraIdle,
+        mapToolbarEnabled: false,
         myLocationButtonEnabled: widget.myLocationButtonEnabled,
         myLocationEnabled: widget.myLocationEnabled,
         onCameraMoveStarted: widget.onCameraMoveStarted,
