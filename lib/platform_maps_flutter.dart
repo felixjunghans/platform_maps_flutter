@@ -1,5 +1,6 @@
 library platform_maps_flutter;
 
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';

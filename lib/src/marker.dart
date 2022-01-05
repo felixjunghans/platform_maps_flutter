@@ -238,8 +238,9 @@ class Marker {
         draggable: marker.draggable,
         infoWindow: marker.infoWindow.googleMapsInfoWindow,
         onTap: marker.onTap,
-        icon: marker.icon?.bitmapDescriptor ??
-            BitmapDescriptor.defaultMarker?.bitmapDescriptor,
+        icon: marker.image != null
+            ? BitmapDescriptor.fromBytes(marker.image!)
+            : BitmapDescriptor.defaultMarker?.bitmapDescriptor,
         visible: marker.visible,
         onDragEnd: marker.onDragEnd != null
             ? (googleMaps.LatLng latLng) =>
