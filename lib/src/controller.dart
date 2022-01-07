@@ -8,7 +8,7 @@ class PlatformMapController {
     if (controller.runtimeType == googleMaps.GoogleMapController) {
       this.googleController = controller;
       this.googleController?.setMapStyle(
-          '[{"featureType": "all", "elementType": "all", "styles": [{ "visibility": "off }]}, { featureType: "administrative.country", "elementType": "labels", "styles": [{ "visibility": "on" }] }]');
+          '[{"elementType": "labels","stylers": [{"visibility": "on"}]},{"featureType": "administrative.neighborhood","stylers": [{"visibility": "off"}]},{"featureType": "poi","stylers": [{"visibility": "off"}]},{"featureType": "transit","stylers": [{"visibility": "off"}]}]');
     } else if (controller.runtimeType == appleMaps.AppleMapController) {
       this.appleController = controller;
     }
