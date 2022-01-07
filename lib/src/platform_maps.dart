@@ -242,16 +242,6 @@ class _PlatformMapState extends State<PlatformMap> {
   }
 
   void _onMapCreated(dynamic controller) {
-    if (Platform.isAndroid) {
-      (controller as googleMaps.GoogleMapController).setMapStyle(json.encode([
-        {
-          "featureType": "poi",
-          "stylers": [
-            {"visibility": "off"}
-          ]
-        }
-      ]));
-    }
     widget.onMapCreated?.call(PlatformMapController(controller));
   }
 

@@ -230,24 +230,25 @@ class Marker {
         position: marker.position.appleLatLng,
       );
 
-  static googleMaps.Marker googleMapsMarkerFromMarker(Marker marker) =>
-      googleMaps.Marker(
-        markerId: marker.markerId.googleMapsMarkerId,
-        alpha: marker.alpha,
-        anchor: Offset(0.5, 1.0),
-        draggable: marker.draggable,
-        infoWindow: marker.infoWindow.googleMapsInfoWindow,
-        onTap: marker.onTap,
-        icon: marker.image != null
-            ? googleMaps.BitmapDescriptor.fromBytes(marker.image!)
-            : googleMaps.BitmapDescriptor.defaultMarker,
-        visible: marker.visible,
-        onDragEnd: marker.onDragEnd != null
-            ? (googleMaps.LatLng latLng) =>
-                _onGoogleMarkerDragEnd(latLng, marker.onDragEnd)
-            : null,
-        position: marker.position.googleLatLng,
-      );
+  static googleMaps.Marker googleMapsMarkerFromMarker(Marker marker) {
+    return googleMaps.Marker(
+      markerId: marker.markerId.googleMapsMarkerId,
+      alpha: marker.alpha,
+      anchor: Offset(0.5, 1.0),
+      draggable: marker.draggable,
+      infoWindow: marker.infoWindow.googleMapsInfoWindow,
+      onTap: marker.onTap,
+      icon: marker.image != null
+          ? googleMaps.BitmapDescriptor.fromBytes(marker.image!)
+          : googleMaps.BitmapDescriptor.defaultMarker,
+      visible: marker.visible,
+      onDragEnd: marker.onDragEnd != null
+          ? (googleMaps.LatLng latLng) =>
+              _onGoogleMarkerDragEnd(latLng, marker.onDragEnd)
+          : null,
+      position: marker.position.googleLatLng,
+    );
+  }
 
   static Set<appleMaps.Annotation> toAppleMapsAnnotationSet(
       Set<Marker> markers) {

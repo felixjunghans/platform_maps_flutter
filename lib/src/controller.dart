@@ -7,6 +7,14 @@ class PlatformMapController {
   PlatformMapController(dynamic controller) {
     if (controller.runtimeType == googleMaps.GoogleMapController) {
       this.googleController = controller;
+      this.googleController?.setMapStyle(json.encode([
+            {
+              "featureType": "poi",
+              "stylers": [
+                {"visibility": "off"}
+              ]
+            }
+          ]));
     } else if (controller.runtimeType == appleMaps.AppleMapController) {
       this.appleController = controller;
     }
