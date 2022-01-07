@@ -7,32 +7,8 @@ class PlatformMapController {
   PlatformMapController(dynamic controller) {
     if (controller.runtimeType == googleMaps.GoogleMapController) {
       this.googleController = controller;
-      this.googleController?.setMapStyle(json.encode([
-            {
-              "elementType": "labels",
-              "stylers": [
-                {"visibility": "on"}
-              ]
-            },
-            {
-              "featureType": "administrative.neighborhood",
-              "stylers": [
-                {"visibility": "off"}
-              ]
-            },
-            {
-              "featureType": "poi",
-              "stylers": [
-                {"visibility": "off"}
-              ]
-            },
-            {
-              "featureType": "transit",
-              "stylers": [
-                {"visibility": "off"}
-              ]
-            }
-          ]));
+      this.googleController?.setMapStyle(
+          '[{"featureType": "all", "elementType": "all", "styles": [{ "visibility": "off }]}, { featureType: "administrative.country", "elementType": "labels", "styles": [{ "visibility": "on" }] }]');
     } else if (controller.runtimeType == appleMaps.AppleMapController) {
       this.appleController = controller;
     }
