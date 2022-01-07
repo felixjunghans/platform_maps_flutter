@@ -9,7 +9,25 @@ class PlatformMapController {
       this.googleController = controller;
       this.googleController?.setMapStyle(json.encode([
             {
+              "elementType": "labels",
+              "stylers": [
+                {"visibility": "on"}
+              ]
+            },
+            {
+              "featureType": "administrative.neighborhood",
+              "stylers": [
+                {"visibility": "off"}
+              ]
+            },
+            {
               "featureType": "poi",
+              "stylers": [
+                {"visibility": "off"}
+              ]
+            },
+            {
+              "featureType": "transit",
               "stylers": [
                 {"visibility": "off"}
               ]
