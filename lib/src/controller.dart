@@ -124,6 +124,14 @@ class PlatformMapController {
     }
   }
 
+  void setLocation(Location location) {
+    if (Platform.isIOS) {
+      //  return this.appleController!.moveCamera(cameraUpdate);
+    } else if (Platform.isAndroid) {
+      return this.googleController!.setLocation(location);
+    }
+  }
+
   /// Return [LatLngBounds] defining the region that is visible in a map.
   Future<LatLngBounds> getVisibleRegion() async {
     late LatLngBounds _bounds;
