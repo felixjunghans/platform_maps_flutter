@@ -1,5 +1,32 @@
 part of platform_maps_flutter;
 
+class PlatformLocation {
+  /// The latitude in degrees between -90.0 and 90.0, both inclusive.
+  final double latitude;
+
+  /// The longitude in degrees between -180.0 (inclusive) and 180.0 (exclusive).
+  final double longitude;
+
+  final double accuracy;
+
+  final double bearing;
+
+  PlatformLocation({
+    required this.latitude,
+    required this.longitude,
+    this.accuracy = 0.0,
+    this.bearing = 0.0,
+  });
+
+  /// Converts this object to something serializable in JSON.
+  Location toGoogleMapsLocation() => Location(
+        latitude: latitude,
+        longitude: longitude,
+        accuracy: accuracy,
+        bearing: bearing,
+      );
+}
+
 /// A pair of latitude and longitude coordinates, stored as degrees.
 class LatLng {
   /// Creates a geographical location specified in degrees [latitude] and

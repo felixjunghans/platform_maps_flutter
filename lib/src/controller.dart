@@ -124,11 +124,13 @@ class PlatformMapController {
     }
   }
 
-  void setLocation(Location location) {
+  void setLocation(PlatformLocation? location) {
     if (Platform.isIOS) {
       //  return this.appleController!.moveCamera(cameraUpdate);
     } else if (Platform.isAndroid) {
-      return this.googleController!.setLocation(location);
+      return this
+          .googleController!
+          .setLocation(location?.toGoogleMapsLocation());
     }
   }
 
